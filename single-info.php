@@ -2,8 +2,11 @@
 	<div class="container marketing">
 		<?php $paralax = get_field("paralax");
 			for($i=0;$i<sizeof($paralax);$i++){
-				?>
-					<div class="img-holder" data-image="<?php echo $paralax[$i][imagen];?>" data-width="1600" data-height="900" data-extra-height="50"></div>
+                                if($paralax[$i][imagen]){?>
+                                        <div class="img-holder" data-image="<?php echo $paralax[$i][imagen];?>" data-width="1600" data-height="900" data-extra-height="50"></div>
+                                <?php }else{?>
+                                        <div class="img-holder-mini" data-image="<?php echo get_template_directory_uri(); ?>/images/background.jpg" data-width="1600" data-height="900" data-extra-height="50"></div>                                                                         
+                                <?php }?>					
 					<br>
 					<section>
 						<?php 
@@ -60,4 +63,18 @@
             parallax: true,
             touch: false
         });
+        $('.img-holder-mini').imageScroll({
+            image: null,
+            imageAttribute: 'image',
+            container: $('body'),
+            speed: 0.2,
+            coverRatio: 0.75,
+            holderClass: 'imageHolder',
+            holderMinHeight: 100,
+            extraHeight: 0,
+            mediaWidth: 1600,
+            mediaHeight: 200,
+            parallax: true,
+            touch: false
+        });        
     </script>
